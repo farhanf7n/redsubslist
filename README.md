@@ -1,6 +1,6 @@
-# REDSUBLIST
+# Overview
 
-Redsublist is an open-source Reddit client designed to provide a seamless experience for exploring your favorite subreddits. Built as part of the roadmap.sh project, this application enables users to discover, engage, and share content effortlessly.
+A browser-based Reddit client that displays multiple subreddits in customizable, side-by-side lanes. Users can add new subreddit feeds, with each lane showing post titles, authors, and vote counts fetched from the Reddit JSON API.
 
 It has been created for https://roadmap.sh/projects/reddit-client portfolio projects.
 
