@@ -1,9 +1,5 @@
 # REDSUBLIST
 
-[![Star on GitHub](https://img.shields.io/github/stars/rafacv23/redditly?style=social)](https://github.com/rafacv23/redditly) [![Fork on GitHub](https://img.shields.io/github/forks/rafacv23/redditly?style=social)](https://github.com/rafacv23/redditly/fork)
-
-# Overview
-
 Redsublist is an open-source Reddit client designed to provide a seamless experience for exploring your favorite subreddits. Built as part of the roadmap.sh project, this application enables users to discover, engage, and share content effortlessly.
 
 It has been created for https://roadmap.sh/projects/reddit-client portfolio projects.
