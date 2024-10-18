@@ -1,13 +1,16 @@
-import SubsLane from './components/SubsLane'
-import './App.css'
+import SubsLane from "./components/SubsLane";
+import "./App.css";
 
 function App() {
-
   return (
     <>
-      <SubsLane />
+      <div className="flex overflow-x-auto gap-2">
+        <SubsLane />
+        <SubsLane />
+        <SubsLane />
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

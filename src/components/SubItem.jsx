@@ -7,9 +7,9 @@ export default function SubItem() {
         className="flex items-start"
         href="https://www.reddit.com/r/chutyapa/comments/1ea8cal/how_do_i_stay_secure_and_protected_online_in/"
       >
-        <div className="border bg-card text-card-foreground shadow flex items-start p-4 w-full rounded-lg transition-transform transform hover:scale-105">
-          <div className="flex flex-col items-start w-16">
-            <div className="flex items-center w-full mb-3">
+        <div className="text-white bg-deep-slate items-center shadow flex gap-5 p-4 w-full rounded-lg transition-transform transform hover:bg-royal-purple hover:border-black">
+          <div className="flex flex-col items-start gap-2">
+            <div className="flex items-center w-full gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -26,9 +26,9 @@ export default function SubItem() {
                   stroke-linejoin="round"
                 />
               </svg>
-              <span className="text-xs font-medium text-white">43</span>
+              <span className="text-xs font-medium">43</span>
             </div>
-            <div className="flex items-center w-full">
+            <div className="flex items-center w-full gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -51,15 +51,15 @@ export default function SubItem() {
                   stroke-linecap="round"
                 />
               </svg>
-              <span className="text-xs font-medium text-white">24</span>
+              <span className="text-xs font-medium  ">24</span>
             </div>
           </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-medium line-clamp-2 mb-1 text-white">
+          <div className="">
+            <h3 className="text-sm font-medium line-clamp-2 mb-1">
               How do I stay secure and protected online in Pakistan? A quick
               guide.
             </h3>
-            <p className="text-xs text-muted-foreground truncate text-white">
+            <p className="text-xs text-muted-foreground truncate  ">
               Posted by _NineZero_
             </p>
           </div>

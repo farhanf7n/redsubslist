@@ -6,7 +6,7 @@ export default function SubsLane() {
         <h2 className="text-xl font- text-white">r/SubName</h2>
         <div className="flex space-x-2">
           <button
-            className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-royal-purple hover:text-white h-8 rounded-md px-3 text-xs border border-royal-purple text-royal-purple"
+            className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-royal-purple hover:text-white h-8 rounded-md px-3 text-xs text-royal-purple bg-deep-slate"
             aria-label="Refresh posts"
           >
             <svg
@@ -47,7 +47,7 @@ export default function SubsLane() {
               />
             </svg>
           </button>
-          <button className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-royal-purple hover:text-white h-8 rounded-md px-3 border border-royal-purple text-royal-purple text-xs">
+          <button className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-royal-purple hover:text-white h-8 rounded-md px-3 text-royal-purple text-xs bg-deep-slate">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -85,6 +85,21 @@ export default function SubsLane() {
         </div>
       </div>
       <div className="flex flex-col gap-2">
+        <SubItem />
+        <SubItem />
+        <SubItem />
+        <SubItem />
+        <SubItem />
+        <SubItem />
+        <SubItem />
+        <SubItem />
+        <SubItem />
+        <SubItem />
+        <SubItem />
+        <SubItem />
+        <SubItem />
+        <SubItem />
+        <SubItem />
         <SubItem />
         <SubItem />
       </div>
