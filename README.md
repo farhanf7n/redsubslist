@@ -11,7 +11,7 @@ It has been created for https://roadmap.sh/projects/reddit-client portfolio proj
 
 ## Deployed URL
 
-You can check out the live version of Redditly at: [https://redsublist.netlify.app](https://redsublist.netlify.app)
+You can check out the live version of Redditly at: [https://redsubslist.netlify.app/](https://redsubslist.netlify.app/)
 
 ## Installation
 
