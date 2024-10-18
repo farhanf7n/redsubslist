@@ -24,7 +24,6 @@ You can check out the live version of Redditly at: [https://redsubslist.netlify.
    ```sh
    npm run dev
    ```
-<p align="right">(<a href="#readme-top">Back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 
@@ -38,5 +37,3 @@ Don't forget to give the project a star! Thanks again!
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">Back to top</a>)</p>
