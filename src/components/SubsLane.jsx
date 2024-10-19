@@ -2,7 +2,7 @@ import SubItem from "../components/SubItem";
 export default function SubsLane() {
   return (
     <>
-      <div className="border-2 border-royal-purple flex-shrink-0 w-80 bg-card rounded-lg p-4 h-[calc(100vh-4.5rem)] overflow-y-auto">
+      <div className="border-2 border-royal-purple flex-shrink-0 w-80 bg-card rounded-lg p-4 h-[calc(100vh-5rem)] overflow-y-auto">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font- text-white">
             /r/<span className="text-orange">SubName</span>{" "}

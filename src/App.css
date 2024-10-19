@@ -1,31 +1,32 @@
 /* Global Css */
 * {
-    font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", Roboto, "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
-    margin: 0;
-    padding: 0;
-    /* For Firefox Browser */
-    scrollbar-width: thin;
-    scrollbar-color: #714DD9 #232229;
+  font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco",
+    Roboto, "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+  margin: 0;
+  padding: 0;
+  /* For Firefox Browser */
+  scrollbar-width: thin;
+  scrollbar-color: #714dd9 #232229;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
-    width: 12px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #232229;
+  background: #232229;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #714DD9;
-    border-radius: 6px;
+  background: #232229;
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #5a3eb0;
+  background: #5a3eb0;
 }
