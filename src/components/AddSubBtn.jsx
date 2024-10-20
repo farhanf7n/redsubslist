@@ -1,61 +1,47 @@
 import { useState } from "react";
 import Modal from "./Modal";
-import Toast from "./Toast";
 
-export default function AddSubBtn() {
+export default function AddSubBtn({ onAddSubreddit }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [subredditInput, setSubredditInput] = useState("");
-  const [toasts, setToasts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const addToast = (reason, message) => {
-    const id = Date.now();
-    setToasts((prevToasts) => [...prevToasts, { id, reason, message }]);
-  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    setError(null);
 
-  const removeToast = (id) => {
-    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
-  };
-
-  const fetchSubredditData = async () => {
     try {
-      const response = await fetch(
-        `https://www.reddit.com/r/${subredditInput}.json`
-      );
-      const data = await response.json();
-      console.log(data);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
+      // Simple validation
+      if (!subredditInput.trim()) {
+        throw new Error("Please enter a subreddit name");
       }
 
-      if (data.error || !data.data || data.data.children.length === 0) {
-        throw new Error(data.message || "Subreddit not found or has no posts");
-      }
-
-      // Success case
-      addToast("Success", "Subreddit found");
-    } catch (error) {
-      console.error("Error fetching subreddit data:", error);
-      addToast("Error", error.message || "Error fetching subreddit data");
-    } finally {
+      // Add the subreddit without pre-fetching
+      onAddSubreddit(subredditInput.trim());
       setSubredditInput("");
       closeModal();
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      fetchSubredditData();
+      handleSubmit(event);
     }
   };
 
   return (
     <>
       <button
-        className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-royal-purple hover:text-white h-10 rounded-lg px-4 py-6 text-xs border-2 border-royal-purple text-royal-purple bg-deep-slate"
+        className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-all hover:bg-royal-purple hover:text-white h-10 rounded-lg px-4 py-6 text-xs border-2 border-royal-purple text-royal-purple bg-deep-slate"
         aria-label="Add subscription"
         onClick={openModal}
       >
@@ -80,38 +66,28 @@ export default function AddSubBtn() {
       {isModalOpen && (
         <Modal onClose={closeModal}>
           <h2 className="text-2xl font-bold mb-4 text-white">
-            Search for a subreddit
+            Add a new subreddit
           </h2>
-          <input
-            type="text"
-            placeholder="Enter subreddit name"
-            className="w-full px-4 py-2 bg-charcoal-black border-2 border-deep-slate text-white rounded transition-all focus:border-orange-500 mb-4 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-      invalid:border-pink-500 invalid:text-pink-600
-      focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
-            value={subredditInput}
-            onChange={(e) => setSubredditInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-          <button
-            className="w-full px-4 py-2 bg-deep-slate text-white rounded transition-all hover:bg-purple-700"
-            onClick={fetchSubredditData}
-          >
-            Submit
-          </button>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Enter subreddit name"
+              className="w-full px-4 py-2 bg-charcoal-black border-2 border-deep-slate text-white rounded transition-all focus:border-orange-500 mb-4"
+              value={subredditInput}
+              onChange={(e) => setSubredditInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+            <button
+              type="submit"
+              className="w-full px-4 py-2 bg-deep-slate text-white rounded transition-all hover:bg-purple-700"
+              disabled={isLoading}
+            >
+              {isLoading ? "Adding..." : "Add Subreddit"}
+            </button>
+          </form>
+          {error && <p className="text-red-500 mt-2">{error}</p>}
         </Modal>
       )}
-
-      <div className="fixed bottom-5 left-5 space-y-2">
-        {toasts.map((toast) => (
-          <Toast
-            key={toast.id}
-            id={toast.id}
-            reason={toast.reason}
-            message={toast.message}
-            onRemove={removeToast}
-          />
-        ))}
-      </div>
     </>
   );
 }

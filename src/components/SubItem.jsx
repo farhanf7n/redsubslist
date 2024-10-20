@@ -1,11 +1,18 @@
-export default function SubItem() {
+export default function SubItem({
+  id,
+  title,
+  author,
+  score,
+  num_comments,
+  url,
+}) {
   return (
     <>
       <a
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-start"
-        href="https://www.reddit.com/r/chutyapa/comments/1ea8cal/how_do_i_stay_secure_and_protected_online_in/"
+        href={url}
       >
         <div className="text-white bg-deep-slate items-center shadow flex gap-5 p-4 w-full rounded-lg transition-transform transform hover:bg-royal-purple hover:border-black">
           <div className="flex flex-col items-start gap-2">
@@ -26,7 +33,7 @@ export default function SubItem() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span className="text-xs font-medium">43</span>
+              <span className="text-xs font-medium">{score}</span>
             </div>
             <div className="flex items-center w-full gap-2">
               <svg
@@ -51,15 +58,12 @@ export default function SubItem() {
                   strokeLinecap="round"
                 />
               </svg>
-              <span className="text-xs font-medium  ">24</span>
+              <span className="text-xs font-medium ">{num_comments}</span>
             </div>
           </div>
           <div>
-            <h3 className="text-sm font-medium line-clamp-2 mb-1">
-              How do I stay secure and protected online in Pakistan? A quick
-              guide.
-            </h3>
-            <p className="text-xs truncate">Posted by _NineZero_</p>
+            <h3 className="text-sm font-medium line-clamp-2 mb-1">{title}</h3>
+            <p className="text-xs truncate">Posted by {author}</p>
           </div>
         </div>
       </a>

@@ -1,16 +1,56 @@
-import SubItem from "../components/SubItem";
-export default function SubsLane() {
+import { useState, useEffect } from "react";
+import SubItem from "./SubItem";
+
+export default function SubsLane({ subreddit }) {
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchPosts();
+  }, [subreddit]);
+
+  const fetchPosts = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(
+        `https://www.reddit.com/r/${subreddit}/hot.json?limit=15`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch posts");
+      }
+      const data = await response.json();
+      const fetchedPosts = data.data.children.map((child) => ({
+        id: child.data.id,
+        title: child.data.title,
+        author: child.data.author,
+        score: child.data.score,
+        num_comments: child.data.num_comments,
+        url: child.data.url,
+      }));
+      setPosts(fetchedPosts);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      setError("Failed to fetch posts. Please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       <div className="border-2 border-royal-purple flex-shrink-0 w-80 bg-card rounded-lg p-4 h-[calc(100vh-5rem)] overflow-y-auto">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font- text-white">
-            /r/<span className="text-orange">SubName</span>{" "}
+            /r/<span className="text-orange">{subreddit}</span>{" "}
           </h2>
           <div className="flex space-x-2">
+            {/* Refrest button */}
             <button
               className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-royal-purple hover:text-white h-8 rounded-md px-3 text-xs text-royal-purple bg-deep-slate"
               aria-label="Refresh posts"
+              onClick={fetchPosts}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -50,6 +90,7 @@ export default function SubsLane() {
                 />
               </svg>
             </button>
+            {/* Delete Row button */}
             <button className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-red-600 hover:text-white h-8 rounded-md px-3 text-royal-purple text-xs bg-deep-slate">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -88,23 +129,23 @@ export default function SubsLane() {
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          <SubItem />
-          <SubItem />
-          <SubItem />
-          <SubItem />
-          <SubItem />
-          <SubItem />
-          <SubItem />
-          <SubItem />
-          <SubItem />
-          <SubItem />
-          <SubItem />
-          <SubItem />
-          <SubItem />
-          <SubItem />
-          <SubItem />
-          <SubItem />
-          <SubItem />
+          {isLoading ? (
+            <p className="text-white">Loading posts...</p>
+          ) : error ? (
+            <p className="text-red-500">{error}</p>
+          ) : (
+            posts.map((post) => (
+              <SubItem
+                key={post.id}
+                id={post.id}
+                title={post.title}
+                author={post.author}
+                score={post.score}
+                num_comments={post.num_comments}
+                url={post.url}
+              />
+            ))
+          )}
         </div>
       </div>
     </>
