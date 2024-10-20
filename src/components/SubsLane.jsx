@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import SubItem from "./SubItem";
 
-export default function SubsLane({ subreddit }) {
+export default function SubsLane({ subreddit, onDelete }) {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -38,6 +38,15 @@ export default function SubsLane({ subreddit }) {
     }
   };
 
+  const handleDelete = () => {
+    console.log("Delete button clicked for subreddit:", subreddit);
+    if (typeof onDelete === "function") {
+      onDelete();
+    } else {
+      console.error("onDelete is not a function");
+    }
+  };
+
   return (
     <>
       <div className="border-2 border-royal-purple flex-shrink-0 w-80 bg-card rounded-lg p-4 h-[calc(100vh-5rem)] overflow-y-auto">
@@ -46,7 +55,7 @@ export default function SubsLane({ subreddit }) {
             /r/<span className="text-orange">{subreddit}</span>{" "}
           </h2>
           <div className="flex space-x-2">
-            {/* Refrest button */}
+            {/* Refresh button */}
             <button
               className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-royal-purple hover:text-white h-8 rounded-md px-3 text-xs text-royal-purple bg-deep-slate"
               aria-label="Refresh posts"
@@ -91,7 +100,10 @@ export default function SubsLane({ subreddit }) {
               </svg>
             </button>
             {/* Delete Row button */}
-            <button className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-red-600 hover:text-white h-8 rounded-md px-3 text-royal-purple text-xs bg-deep-slate">
+            <button
+              className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-red-600 hover:text-white h-8 rounded-md px-3 text-royal-purple text-xs bg-deep-slate"
+              onClick={handleDelete}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

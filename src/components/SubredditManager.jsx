@@ -9,12 +9,23 @@ export default function SubredditManager() {
     setSubreddits((prevSubreddits) => [...prevSubreddits, newSubreddit]);
   };
 
+  const deleteSubreddit = (subredditToDelete) => {
+    console.log("Deleting subreddit:", subredditToDelete);
+    setSubreddits((prevSubreddits) =>
+      prevSubreddits.filter((subreddit) => subreddit !== subredditToDelete)
+    );
+  };
+
   return (
-    <div className="flex gap-2">
-      {subreddits.map((subreddit) => (
-        <SubsLane key={subreddit} subreddit={subreddit} />
-      ))}
+    <div className="flex flex-wrap">
       <AddSubBtn onAddSubreddit={addSubreddit} />
+      {subreddits.map((subreddit) => (
+        <SubsLane
+          key={subreddit}
+          subreddit={subreddit}
+          onDelete={() => deleteSubreddit(subreddit)}
+        />
+      ))}
     </div>
   );
 }
