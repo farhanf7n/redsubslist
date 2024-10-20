@@ -46,6 +46,12 @@ export default function AddSubBtn() {
     }
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      fetchSubredditData();
+    }
+  };
+
   return (
     <>
       <button
@@ -84,6 +90,7 @@ export default function AddSubBtn() {
       focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
             value={subredditInput}
             onChange={(e) => setSubredditInput(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
           <button
             className="w-full px-4 py-2 bg-deep-slate text-white rounded transition-all hover:bg-purple-700"
