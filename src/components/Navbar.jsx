@@ -1,6 +1,6 @@
 export default function Navbar() {
   return (
-    <div className="w-full mx-auto flex items-center justify-between pt-2">
+    <div className="w-full py-3 sm:pb-0 justify-center mx-auto flex items-center sm:justify-between sm:pt-2">
       <div>
         <svg
           width="70"
