@@ -1,13 +1,23 @@
 import { useState } from "react";
 import Modal from "./Modal";
+import Toast from "./Toast";
 
 export default function AddSubBtn() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [subredditInput, setSubredditInput] = useState("");
+  const [toasts, setToasts] = useState([]);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const addToast = (reason, message) => {
+    const id = Date.now();
+    setToasts((prevToasts) => [...prevToasts, { id, reason, message }]);
+  };
+
+  const removeToast = (id) => {
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+  };
 
   const fetchSubredditData = async () => {
     try {
@@ -16,9 +26,23 @@ export default function AddSubBtn() {
       );
       const data = await response.json();
       console.log(data);
-      setSubredditInput("");
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+
+      if (data.error || !data.data || data.data.children.length === 0) {
+        throw new Error(data.message || "Subreddit not found or has no posts");
+      }
+
+      // Success case
+      addToast("Success", "Subreddit found");
     } catch (error) {
       console.error("Error fetching subreddit data:", error);
+      addToast("Error", error.message || "Error fetching subreddit data");
+    } finally {
+      setSubredditInput("");
+      closeModal();
     }
   };
 
@@ -63,15 +87,24 @@ export default function AddSubBtn() {
           />
           <button
             className="w-full px-4 py-2 bg-deep-slate text-white rounded transition-all hover:bg-purple-700"
-            onClick={() => {
-              fetchSubredditData();
-              closeModal();
-            }}
+            onClick={fetchSubredditData}
           >
             Submit
           </button>
         </Modal>
       )}
+
+      <div className="fixed bottom-5 left-5 space-y-2">
+        {toasts.map((toast) => (
+          <Toast
+            key={toast.id}
+            id={toast.id}
+            reason={toast.reason}
+            message={toast.message}
+            onRemove={removeToast}
+          />
+        ))}
+      </div>
     </>
   );
 }

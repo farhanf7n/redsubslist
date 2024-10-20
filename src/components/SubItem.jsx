@@ -59,7 +59,7 @@ export default function SubItem() {
               How do I stay secure and protected online in Pakistan? A quick
               guide.
             </h3>
-            <p className="text-xs truncate ">Posted by _NineZero_</p>
+            <p className="text-xs truncate">Posted by _NineZero_</p>
           </div>
         </div>
       </a>
