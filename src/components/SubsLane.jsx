@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import SubItem from "./SubItem";
 
 export default function SubsLane({ subreddit, onDelete }) {
@@ -6,11 +6,7 @@ export default function SubsLane({ subreddit, onDelete }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetchPosts();
-  }, [subreddit]);
-
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
@@ -36,7 +32,11 @@ export default function SubsLane({ subreddit, onDelete }) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [subreddit]);
+
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
 
   const handleDelete = () => {
     console.log("Delete button clicked for subreddit:", subreddit);

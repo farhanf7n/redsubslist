@@ -17,8 +17,7 @@ export default function SubredditManager() {
   };
 
   return (
-    <div className="flex flex-wrap">
-      <AddSubBtn onAddSubreddit={addSubreddit} />
+    <div className="flex gap-2">
       {subreddits.map((subreddit) => (
         <SubsLane
           key={subreddit}
@@ -26,6 +25,7 @@ export default function SubredditManager() {
           onDelete={() => deleteSubreddit(subreddit)}
         />
       ))}
+      <AddSubBtn onAddSubreddit={addSubreddit} />
     </div>
   );
 }
