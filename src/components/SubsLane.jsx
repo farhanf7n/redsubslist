@@ -39,7 +39,6 @@ export default function SubsLane({ subreddit, onDelete }) {
   }, [fetchPosts]);
 
   const handleDelete = () => {
-    console.log("Delete button clicked for subreddit:", subreddit);
     if (typeof onDelete === "function") {
       onDelete();
     } else {

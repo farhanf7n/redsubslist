@@ -6,11 +6,14 @@ export default function SubredditManager() {
   const [subreddits, setSubreddits] = useState([]);
 
   const addSubreddit = (newSubreddit) => {
+    if (subreddits.includes(newSubreddit)) {
+      return "Can't add this subreddit, cause it already exists.";
+    }
     setSubreddits((prevSubreddits) => [...prevSubreddits, newSubreddit]);
+    return null;
   };
 
   const deleteSubreddit = (subredditToDelete) => {
-    console.log("Deleting subreddit:", subredditToDelete);
     setSubreddits((prevSubreddits) =>
       prevSubreddits.filter((subreddit) => subreddit !== subredditToDelete)
     );

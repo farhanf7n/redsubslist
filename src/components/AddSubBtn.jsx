@@ -8,7 +8,11 @@ export default function AddSubBtn({ onAddSubreddit }) {
   const [error, setError] = useState(null);
 
   const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setError(null);
+    setSubredditInput("");
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -16,15 +20,17 @@ export default function AddSubBtn({ onAddSubreddit }) {
     setError(null);
 
     try {
-      // Simple validation
       if (!subredditInput.trim()) {
         throw new Error("Please enter a subreddit name");
       }
 
-      // Add the subreddit without pre-fetching
-      onAddSubreddit(subredditInput.trim());
-      setSubredditInput("");
-      closeModal();
+      const result = onAddSubreddit(subredditInput.trim());
+      if (result) {
+        setError(result);
+      } else {
+        setSubredditInput("");
+        closeModal();
+      }
     } catch (error) {
       setError(error.message);
     } finally {
