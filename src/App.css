@@ -4,9 +4,6 @@
     Roboto, "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
   margin: 0;
   padding: 0;
-  /* For Firefox Browser */
-  scrollbar-width: thin;
-  scrollbar-color: #714dd9 #232229;
 }
 
 html {
@@ -14,19 +11,25 @@ html {
 }
 
 /* Custom Scrollbar Styles */
-::-webkit-scrollbar {
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #714dd9 #232229;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
   width: 12px;
 }
 
-::-webkit-scrollbar-track {
+.custom-scrollbar::-webkit-scrollbar-track {
   background: #232229;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #232229;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #714dd9;
   border-radius: 6px;
+  border: 3px solid #232229;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #5a3eb0;
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #5a3eb0;
 }
