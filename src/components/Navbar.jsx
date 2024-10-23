@@ -1,6 +1,6 @@
 export default function Navbar() {
   return (
-    <div className="w-full py-3 sm:pb-0 justify-center mx-auto flex items-center sm:justify-between sm:pt-2">
+    <div className="w-full py-3 sm:pb-2 justify-center mx-auto flex items-center sm:justify-between sm:pt-2">
       <div>
         <svg
           width="70"
@@ -50,14 +50,14 @@ export default function Navbar() {
         <a
           href="https://github.com/farhanf7n/redsubslist"
           target="_blank"
-          className="hidden md:flex py-[12px] px-[18px] items-center gap-[8px] bg-[#000000] text-white rounded-[8px] shadow-drop border border-transparent hover:bg-royal-purple transition-colors"
+          className="hidden md:flex py-2 px-4 text-xs items-center gap-[8px] bg-[#000000] text-white rounded-[8px] shadow-drop border border-transparent hover:bg-royal-purple transition-colors"
         >
           Star on Github{" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            width="24"
-            height="24"
+            width="16"
+            height="16"
             color="#ffffff"
             fill="none"
           >
