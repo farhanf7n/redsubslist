@@ -48,7 +48,7 @@ export default function SubsLane({ subreddit, onDelete }) {
 
   return (
     <>
-      <div className="border-2 border-royal-purple flex-shrink-0 w-80 bg-card rounded-lg p-4 h-[calc(100vh-5rem)] overflow-y-auto">
+      <div className="border-2 border-royal-purple flex-shrink-0 w-80 bg-card rounded-lg p-4 h-[calc(100vh-4.5rem)] overflow-y-auto">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font- text-white">
             /r/<span className="text-orange">{subreddit}</span>{" "}
@@ -141,7 +141,27 @@ export default function SubsLane({ subreddit, onDelete }) {
         </div>
         <div className="flex flex-col gap-2">
           {isLoading ? (
-            <p className="text-white">Loading posts...</p>
+            <div className="text-white flex gap-2 justify-center items-center">
+              <svg
+                class="animate-spin -ml-1 mr-3 h-6 w-6 text-royal-purple"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  stroke="currentColor"
+                  stroke-width="4"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                ></circle>
+                <path
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+            </div>
           ) : error ? (
             <p className="text-red-500">{error}</p>
           ) : (
