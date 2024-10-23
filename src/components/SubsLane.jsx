@@ -142,15 +142,15 @@ export default function SubsLane({ subreddit, onDelete }) {
         {isLoading ? (
           <div className="text-white flex gap-2 justify-center items-center">
             <svg
-              class="animate-spin -ml-1 mr-3 h-6 w-6 text-royal-purple"
+              className="animate-spin -ml-1 mr-3 h-6 w-6 text-royal-purple"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
             >
               <circle
-                class="opacity-25"
+                className="opacity-25"
                 stroke="currentColor"
-                stroke-width="4"
+                strokeWidth="4"
                 cx="12"
                 cy="12"
                 r="10"
